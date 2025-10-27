@@ -6,4 +6,7 @@ import express from "express";
 
 const app: express.Application = express();
 
+// This middleware is used to parse incoming request bodies in a JSON format into javascript objects.
+app.use(express.json());
+
 export default app;
