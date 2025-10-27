@@ -1,19 +1,9 @@
-import express from "express";
+import app from "./app";
 
-const app = express();
+// This file contains all the code that only runs once (on server start).
+// Keeping the startup logic separate from the business logic (routes).
+
 const PORT = 4000;
-
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
-app.get("/test", (req, res) => {
-  res.send("Express is working!");
-});
-
-app.get("/ping", (req, res) => {
-  res.send({ success: true, message: "Pong" });
-});
 
 app.listen(PORT, () => {
   console.log(`Server is running on  http://localhost:${PORT}`);
