@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { tasks } from "../models/taskModel";
+import { tasks } from "../models/taskModel.js";
 
 // When we use _req, we are saying that we are not using the request object.
 // When we don't specify res.status, it will default to 200.

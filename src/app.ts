@@ -1,6 +1,6 @@
 import express from "express";
-import tasksRouter from "./routes/tasks";
-import { errorHandler } from "./middleware/errorHandler";
+import tasksRouter from "./routes/tasks.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 
 // This file creates teh express instance and exports it.
 // In the future we will also apply global middleware here.

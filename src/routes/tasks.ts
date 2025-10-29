@@ -5,9 +5,9 @@ import {
   createTask,
   //   updateTask,
   //   deleteTask,
-} from "../controllers/tasksController";
-import { validate } from "../middleware/validate";
-import { createTaskSchema } from "../schemas/taskSchemas";
+} from "../controllers/tasksController.js";
+import { validate } from "../middleware/validate.js";
+import { createTaskSchema } from "../schemas/taskSchemas.js";
 
 const router: Router = Router();
 
