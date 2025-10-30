@@ -1,5 +1,6 @@
 import app from "./app.js";
 import { connectDB } from "./config/db.js";
+import "./config/env.js";
 
 // This file contains all the code that only runs once (on server start).
 // Keeping the startup logic separate from the business logic (routes).
