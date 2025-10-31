@@ -38,11 +38,6 @@ export const createTask = async (
 ) => {
   try {
     const { title } = req.body;
-    if (!title || typeof title !== "string") {
-      return res
-        .status(400)
-        .json({ error: "Title is required and must be a string" });
-    }
     const newTask = await taskService.createTask(title);
     res.status(201).json(newTask);
   } catch (err) {

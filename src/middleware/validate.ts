@@ -1,25 +1,21 @@
 import { Request, Response, NextFunction } from "express";
-import { z, ZodError } from "zod";
+import { ZodType } from "zod";
 
-// Generic validation middleware
-export const validate = (schema: z.ZodSchema) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    try {
-      // Parse and validate the request body
-      req.body = schema.parse(req.body);
-      next();
-    } catch (error) {
-      if (error instanceof ZodError) {
-        // Return detailed validation errors
-        return res.status(400).json({
-          message: "Validation failed",
-          details: error.issues.map((err) => ({
-            path: err.path.join("."),
-            message: err.message,
-          })),
-        });
-      }
-      next(error);
+export const validate =
+  (schema: ZodType) => (req: Request, res: Response, next: NextFunction) => {
+    const result = schema.safeParse({
+      body: req.body,
+      params: req.params,
+      query: req.query,
+    });
+
+    if (!result.success) {
+      const errors = result.error.issues.map((issue) => ({
+        path: issue.path.join("."),
+        message: issue.message,
+      }));
+      return res.status(400).json({ errors });
     }
+
+    next();
   };
-};
