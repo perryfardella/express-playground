@@ -1,12 +1,17 @@
 import { z } from "zod";
 
 export const createTaskSchema = z.object({
-  title: z.string().min(1, "Title is required"),
+  body: z.object({
+    title: z.string().min(1, "Title is required"),
+  }),
 });
 
 export const updateTaskSchema = z.object({
   body: z.object({
-    title: z.string().min(1, "Title is required"),
+    title: z
+      .string()
+      .min(1, "Title must contain at least 1 character")
+      .optional(),
     completed: z.boolean().optional(),
   }),
   params: z.object({
@@ -15,5 +20,7 @@ export const updateTaskSchema = z.object({
 });
 
 export const idParamSchema = z.object({
-  id: z.string().min(1, "Task ID is required"),
+  params: z.object({
+    id: z.string().min(1, "Task ID is required"),
+  }),
 });
